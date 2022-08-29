@@ -24,7 +24,9 @@ df_gorjetas['refeicao'].replace({'Dinner': 'janta',
 
 
 # valor_conta_gorjeta = sns.scatterplot(x='valor_conta', y='valor_gorjeta', data=df_gorjetas) # Visualmente, o valor da gorjeta cresce conforme aumenta o valor da conta
-# plt.show()
+# fig_1 = valor_conta_gorjeta.get_figure()
+# fig_1.savefig('valor_conta_gorjeta.png')
+
 
 dados_nao_nulos = df_gorjetas.count() # Não há valores nulos no dataframe
 
@@ -32,12 +34,14 @@ dados_nao_nulos = df_gorjetas.count() # Não há valores nulos no dataframe
 df_gorjetas['porcentagem'] = ((df_gorjetas['valor_gorjeta'] / df_gorjetas['valor_conta']) * 100).round(2)
 
 # porcent_gorjeta = sns.scatterplot(x='valor_conta', y='porcentagem', data=df_gorjetas) # Visualmente, o valor da conta não é proporcional ao valor da gorjeta
-# plt.show()
+# fig_2 = porcent_gorjeta.get_figure()
+# fig_2.savefig('porcent_gorjeta.png')
 
 
-# porcent_gorjeta = sns.lineplot(x='valor_conta', y='porcentagem', data=df_gorjetas)
-# plt.show()
+# porcent_gorjeta_linha = sns.lineplot(x='valor_conta', y='porcentagem', data=df_gorjetas)
+# fig_3 = porcent_gorjeta_linha.get_figure()
+# fig_3.savefig('porcent_gorjeta_linha.png')
 
 
-# regressao = sns.lmplot(x='valor_conta', y='porcentagem', data=df_gorjetas)
-# plt.show()
+valor_conta_gorjeta_linha = sns.lmplot(x='valor_conta', y='porcentagem', data=df_gorjetas)
+valor_conta_gorjeta_linha.savefig('valor_conta_gorjeta_linha.png')
