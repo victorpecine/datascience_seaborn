@@ -123,4 +123,21 @@ media_gorjetas_dia = df_gorjetas.groupby(['dia_da_semana']).mean()['valor_gorjet
 
 
 qtd_gorjetas_dia = df_gorjetas['dia_da_semana'].value_counts()
-print(qtd_gorjetas_dia)
+# sabado     87
+# domingo    76
+# quinta     62
+# sexta      19
+
+
+# Visualização com gráficos
+# Refeição x valor da gorjeta
+
+# refeicao_conta = sns.catplot(x='refeicao', y='valor_conta', data=df_gorjetas) # Visualmente, o jantar tem valores de conta maiores que no almoço
+
+# refeicao_conta.savefig('graficos/refeicao_conta.png')
+
+
+refeicao_conta_boxplot = sns.boxplot(x='refeicao', y='valor_conta', data=df_gorjetas)
+
+fig_4 = refeicao_conta_boxplot.get_figure()
+fig_4.savefig('graficos/refeicao_conta_boxplot.png')
