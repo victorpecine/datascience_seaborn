@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import ranksums
 
 df_gorjetas = pd.read_csv('dados_gorjetas/tips.csv')
 
@@ -71,12 +72,28 @@ desc_sem_sobremesa_gorjeta = df_gorjetas[df_gorjetas['sobremesa'] == 'nao'].desc
 # sobremesa_gorjeta.savefig('sobremesa_gorjeta.png')
 
 
-regre_conta_gorjeta = sns.lmplot(x='valor_conta', y='valor_gorjeta', col='sobremesa', hue='sobremesa', data=df_gorjetas)
+# regre_conta_gorjeta = sns.lmplot(x='valor_conta', y='valor_gorjeta', col='sobremesa', hue='sobremesa', data=df_gorjetas)
 
-regre_conta_gorjeta.savefig('regre_conta_gorjeta.png')
+# regre_conta_gorjeta.savefig('regre_conta_gorjeta.png')
 
 
-regre_porcent_gorjeta = sns.lmplot(x='valor_conta', y='porcentagem', col='sobremesa', hue='sobremesa', data=df_gorjetas)
+# regre_porcent_gorjeta = sns.lmplot(x='valor_conta', y='porcentagem', col='sobremesa', hue='sobremesa', data=df_gorjetas)
 
-regre_porcent_gorjeta.savefig('regre_porcent_gorjeta.png')
+# regre_porcent_gorjeta.savefig('regre_porcent_gorjeta.png')
 
+
+# Teste de hipótese
+# Hipótese nula - a distribuição da gorjeta é a mesma entre quem pediu e quem não pediu sobremesa
+# Hipótese não nula - a distribuição da gorjeta é diferente entre quem pediu e quem não pediu sobremesa
+
+porcent_sobremesa_gorjeta = df_gorjetas.query('sobremesa == "sim"').porcentagem
+
+# print(porcent_sobremesa_gorjeta)
+
+porcent_sem_sobremesa_gorjeta = df_gorjetas.query('sobremesa == "nao"').porcentagem
+
+# print(porcent_sem_sobremesa_gorjeta)
+
+comparativo = ranksums(porcent_sobremesa_gorjeta, porcent_sem_sobremesa_gorjeta)
+
+print(comparativo)
