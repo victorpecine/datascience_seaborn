@@ -137,7 +137,7 @@ qtd_gorjetas_dia = df_gorjetas['dia_da_semana'].value_counts()
 # refeicao_conta.savefig('graficos/refeicao_conta.png')
 
 
-refeicao_conta_boxplot = sns.boxplot(x='refeicao', y='valor_conta', data=df_gorjetas)
+# refeicao_conta_boxplot = sns.boxplot(x='refeicao', y='valor_conta', data=df_gorjetas)
 
-fig_4 = refeicao_conta_boxplot.get_figure()
-fig_4.savefig('graficos/refeicao_conta_boxplot.png')
+# fig_4 = refeicao_conta_boxplot.get_figure()
+# fig_4.savefig('graficos/refeicao_conta_boxplot.png')
