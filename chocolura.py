@@ -74,14 +74,12 @@ media_vendas_dia_semana = df_vendas_diarias.groupby(['dia_semana'])['vendas'].me
 
 # Dados estatísticos descritivos
 estat_vendas = df_vendas_diarias.describe().round(2)
-#           vendas
-# count  61.000000
-# mean   41.885246
-# std    16.474322
-# min    14.000000
-# 25%    20.000000
-# 50%    50.000000
-# 75%    53.000000
-# max    60.000000
-
-print(estat_vendas)
+#         vendas
+# count   61.00
+# mean    41.89
+# std     16.47
+# min     14.00
+# 25%     20.00
+# 50%     50.00
+# 75%     53.00
+# max     60.00
