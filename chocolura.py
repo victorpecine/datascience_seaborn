@@ -43,7 +43,7 @@ data_formatada_vendas = serie_data_vendas.dt.strftime('%b %d')
 
 df_vendas_diarias['dia'] = data_formatada_vendas
 
-vendas_dia_semana = serie_data_vendas.dt.strftime('%a')
+vendas_dia_semana = serie_data_vendas.dt.day_name()
 
 df_vendas_diarias['dia_semana'] = vendas_dia_semana
 
@@ -53,21 +53,35 @@ df_vendas_diarias['dia_semana'] = vendas_dia_semana
 # plt.show()
 
 
-qtd_vendas_dia_semana = df_vendas_diarias.groupby(['dia_semana'],)['vendas'].sum().sort_values(ascending=False)
-# dia_semana
-# Wed    478
-# Mon    471
-# Tue    465
-# Thu    462
-# Fri    401
-# Sun    151
-# Sat    127
+qtd_vendas_dia_semana = df_vendas_diarias.groupby(['dia_semana'])['vendas'].sum().sort_values(ascending=False)
+# Wednesday    478
+# Monday       471
+# Tuesday      465
+# Thursday     462
+# Friday       401
+# Sunday       151
+# Saturday     127
 
-grafico1 = grafico(df_vendas_diarias, 'dia_semana', df_vendas_diarias.groupby(['dia_semana'],)['vendas'].sum())
-plt.show()
+media_vendas_dia_semana = df_vendas_diarias.groupby(['dia_semana'])['vendas'].mean().sort_values(ascending=False).round(2)
+# Wednesday    53.11
+# Monday       52.33
+# Tuesday      51.67
+# Thursday     51.33
+# Friday       44.56
+# Sunday       18.88
+# Saturday     15.88
 
 
-# print(qtd_vendas_dia_semana)
+# Dados estatísticos descritivos
+estat_vendas = df_vendas_diarias.describe().round(2)
+#           vendas
+# count  61.000000
+# mean   41.885246
+# std    16.474322
+# min    14.000000
+# 25%    20.000000
+# 50%    50.000000
+# 75%    53.000000
+# max    60.000000
 
-# print(df_vendas_diarias)
-
+print(estat_vendas)
