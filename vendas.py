@@ -1,22 +1,45 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.dates import RRuleLocator
 import seaborn as sns
 
 df_alucar = pd.read_csv('dados_vendas/alucar.csv') # 24 linhas, 2 colunas
 
 df_alucar_nulos = df_alucar.isna().sum() # Não há dados nulos
 
-df_alucar['mes'] = pd.to_datetime(df_alucar['mes'])
+
+# Formatação da data para 'Mês, ano'
+serie_data = pd.Series(df_alucar['mes'])
+serie_data = pd.to_datetime(serie_data)
+
+data_formatada = serie_data.dt.strftime('%b, %y')
+
+df_alucar['mes'] = data_formatada
 
 
-# Analises visuais
-sns.set_palette('Paired')
-vendas = sns.lineplot(data=df_alucar, x='mes', y='vendas')
-vendas.figure.set_size_inches(12, 5)
-vendas.set_title('Crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
-vendas.set_xlabel('Meses', fontsize=14)
-vendas.set_ylabel('Qtd. de vendas', fontsize=14)
-vendas = vendas.get_figure()
-vendas.savefig('graficos_vendas/vendas.png')
+# Análise visual das vendas
+# sns.set_palette('Paired')
+# vendas = sns.lineplot(data=df_alucar, x='mes', y='vendas')
 
-print(df_alucar)
+# vendas.figure.set_size_inches(12, 5)
+# vendas.set_title('Crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
+# vendas.set_xlabel('Meses', fontsize=14)
+# vendas.set_xticklabels(df_alucar['mes'], rotation=30)
+# vendas.set_ylabel('Qtd. de vendas', fontsize=14)
+
+# vendas = vendas.get_figure()
+# vendas.savefig('graficos_vendas/vendas.png')
+
+
+# Análise visual da variacao das vendas nos meses
+df_alucar['variacao_vendas'] = df_alucar['vendas'].pct_change()
+variacao_vendas = sns.lineplot(data=df_alucar, x='mes', y='variacao_vendas')
+
+variacao_vendas.figure.set_size_inches(12, 5)
+variacao_vendas.set_title('Queda no crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
+variacao_vendas.set_xlabel('Meses', fontsize=14)
+variacao_vendas.set_xticklabels(df_alucar['mes'], rotation=30)
+variacao_vendas.set_ylabel('Var. vendas', fontsize=14)
+
+variacao_vendas = variacao_vendas.get_figure()
+variacao_vendas.savefig('graficos_vendas/variacao_vendas.png')
