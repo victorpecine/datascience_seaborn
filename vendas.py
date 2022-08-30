@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.dates import RRuleLocator
 import seaborn as sns
 from biblioteca import grafico
 
@@ -46,14 +44,14 @@ df_alucar['mes'] = data_formatada
 # variacao_vendas.savefig('graficos_vendas/variacao_vendas.png')
 
 
-# Análise visual das vendas
-vendas = grafico(df_alucar, 'mes', 'Meses', 'vendas', 'Qtd. de vendas', 'Aumento na qtd. de vendas entre 2017 e 2018')
+# Análise visual das vendas com função 'grafico'
+# vendas = grafico(df_alucar, 'mes', 'Meses', 'vendas', 'Qtd. de vendas', 'Aumento na qtd. de vendas entre 2017 e 2018')
 
-plt.show()
+# plt.show()
 
 df_alucar['variacao_vendas'] = df_alucar['vendas'].pct_change()
 
-# Análise visual da variacao das vendas nos meses
-variacao_vendas = grafico(df_alucar, 'mes', 'Meses', 'variacao_vendas', 'Var. vendas', 'Queda no crescimento de vendas entre 2017 e 2018')
+# Análise visual da variacao das vendas nos meses com função 'grafico'
+# variacao_vendas = grafico(df_alucar, 'mes', 'Meses', 'variacao_vendas', 'Var. vendas', 'Queda no crescimento de vendas entre 2017 e 2018')
 
-plt.show()
+# plt.show()
