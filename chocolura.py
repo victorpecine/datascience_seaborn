@@ -17,6 +17,14 @@ df_chocolura['mes'] = data_formatada
 
 
 # Analise visual das vendas
-vendas = grafico(df_chocolura, 'mes', 'vendas', titulo='Vendas entre 2017 e 2018') # Picos de vendas em abril (páscoa) e junho (dia dos namorados)
+# vendas = grafico(df_chocolura, 'mes', 'vendas', titulo='Vendas entre 2017 e 2018') # Picos de vendas em abril (páscoa) e junho (dia dos namorados)
+
+# plt.show()
+
+
+# Analise da variação de vendas
+df_chocolura['variacao_vendas'] = df_chocolura['vendas'].pct_change()
+
+variacao_vendas = grafico(df_chocolura, 'mes', 'variacao_vendas')
 
 plt.show()
