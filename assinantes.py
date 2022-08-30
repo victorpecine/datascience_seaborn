@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 from biblioteca import grafico
 
 df_assinantes = pd.read_csv('dados_vendas/newsletter_alucar.csv') # 24 linhas, 2 colunas
@@ -23,5 +22,3 @@ df_assinantes['novos_assinantes'] = df_assinantes['assinantes'].diff()
 grafico_assiantes = grafico(df_assinantes, 'mes', 'novos_assinantes', 'Meses', 'Novos assinantes')
 
 plt.show()
-
-print(df_assinantes)
