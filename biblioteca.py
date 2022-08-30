@@ -1,6 +1,6 @@
 import seaborn as sns
 
-def grafico(dataframe, x, y, labelx=False, labely=False, titulo=''):
+def grafico(dataframe, x, y, labelx=None, labely=None, titulo=None):
     sns.set_palette('Paired')
     ax = sns.lineplot(data=dataframe, x=x, y=y)
 
