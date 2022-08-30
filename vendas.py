@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.dates import RRuleLocator
 import seaborn as sns
+from biblioteca import grafico
 
 df_alucar = pd.read_csv('dados_vendas/alucar.csv') # 24 linhas, 2 colunas
 
@@ -22,7 +23,7 @@ df_alucar['mes'] = data_formatada
 # vendas = sns.lineplot(data=df_alucar, x='mes', y='vendas')
 
 # vendas.figure.set_size_inches(12, 5)
-# vendas.set_title('Crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
+# vendas.set_title('Vendas entre 2017 e 2018', loc='left', fontsize=18)
 # vendas.set_xlabel('Meses', fontsize=14)
 # vendas.set_xticklabels(df_alucar['mes'], rotation=30)
 # vendas.set_ylabel('Qtd. de vendas', fontsize=14)
@@ -32,14 +33,27 @@ df_alucar['mes'] = data_formatada
 
 
 # Análise visual da variacao das vendas nos meses
+# df_alucar['variacao_vendas'] = df_alucar['vendas'].pct_change()
+# variacao_vendas = sns.lineplot(data=df_alucar, x='mes', y='variacao_vendas')
+
+# variacao_vendas.figure.set_size_inches(12, 5)
+# variacao_vendas.set_title('Queda no crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
+# variacao_vendas.set_xlabel('Meses', fontsize=14)
+# variacao_vendas.set_xticklabels(df_alucar['mes'], rotation=30)
+# variacao_vendas.set_ylabel('Var. vendas', fontsize=14)
+
+# variacao_vendas = variacao_vendas.get_figure()
+# variacao_vendas.savefig('graficos_vendas/variacao_vendas.png')
+
+
+# Análise visual das vendas
+vendas = grafico(df_alucar, 'mes', 'Meses', 'vendas', 'Qtd. de vendas', 'Aumento na qtd. de vendas entre 2017 e 2018')
+
+plt.show()
+
 df_alucar['variacao_vendas'] = df_alucar['vendas'].pct_change()
-variacao_vendas = sns.lineplot(data=df_alucar, x='mes', y='variacao_vendas')
 
-variacao_vendas.figure.set_size_inches(12, 5)
-variacao_vendas.set_title('Queda no crescimento de vendas entre 2017 e 2018', loc='left', fontsize=18)
-variacao_vendas.set_xlabel('Meses', fontsize=14)
-variacao_vendas.set_xticklabels(df_alucar['mes'], rotation=30)
-variacao_vendas.set_ylabel('Var. vendas', fontsize=14)
+# Análise visual da variacao das vendas nos meses
+variacao_vendas = grafico(df_alucar, 'mes', 'Meses', 'variacao_vendas', 'Var. vendas', 'Queda no crescimento de vendas entre 2017 e 2018')
 
-variacao_vendas = variacao_vendas.get_figure()
-variacao_vendas.savefig('graficos_vendas/variacao_vendas.png')
+plt.show()
